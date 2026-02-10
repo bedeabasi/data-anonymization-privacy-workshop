@@ -145,3 +145,146 @@ conda activate privacy-workshop
 - All datasets used in this workshop are **synthetic**.
 - If you encounter issues you cannot resolve, bring the **full error message** to the first session.
 
+---
+
+## Prerequisites Checklist (Before Day 1)
+
+Before attending the first session, make sure you can confirm **all** of the following:
+
+- [ ] Git is installed (`git --version` works)
+- [ ] Conda is installed (`conda --version` works)
+- [ ] The `privacy-workshop` environment activates successfully
+- [ ] Jupyter Notebook launches without errors
+- [ ] You can open and run `session1_reidentification.ipynb`
+
+If **any** item fails, resolve it **before** the first session.
+
+---
+
+## Repository Structure
+
+After cloning the repository, your directory should look like this:
+
+```
+data-anonymization-privacy-workshop/
+├── README.md
+├── setup/
+│   └── environment.yml
+├── notebooks/
+│   ├── session1_reidentification.ipynb
+│   ├── session2_k_anonymity.ipynb
+│   └── session3_differential_privacy.ipynb
+├── data/
+│   ├── raw/
+│   └── processed/
+├── src/
+│   ├── anonymization/
+│   └── attacks/
+└── results/
+```
+
+If your structure differs significantly, you may have cloned the repository incorrectly.
+
+---
+
+## Environment Details
+
+This workshop uses a **dedicated Conda environment** to ensure consistency across systems.
+
+- Python version: **3.9**
+- Core libraries:
+  - NumPy
+  - Pandas
+  - Scikit-learn
+  - Matplotlib
+  - Jupyter
+  - Seaborn
+
+All dependencies are pinned in:
+
+```
+setup/environment.yml
+```
+
+Do **not** install additional packages unless explicitly instructed.
+
+---
+
+## Workshop Flow Overview
+
+Each session follows the same structure:
+
+1. **Conceptual overview** (threat model, assumptions, risks)
+2. **Hands-on notebook walkthrough**
+3. **Attack or evaluation**
+4. **Discussion of failures and tradeoffs**
+
+Sessions build on each other — skipping earlier notebooks is **not recommended**.
+
+---
+
+## Rules of Engagement
+
+To ensure everyone has a smooth experience:
+
+- Do **not** rename notebooks or folders
+- Do **not** hardcode absolute file paths
+- Run notebooks **top to bottom**
+- Ask questions when something breaks — debugging is part of the learning
+
+---
+
+## Common Issues and Fixes
+
+### Kernel not found in Jupyter
+
+Select the correct kernel manually:
+
+```
+Kernel → Change Kernel → privacy-workshop
+```
+
+### Notebook runs slowly
+
+- Close unused applications
+- Restart the kernel:
+  ```
+  Kernel → Restart Kernel and Clear Output
+  ```
+
+### Package import errors
+
+Reinstall the environment:
+
+```bash
+conda deactivate
+conda env remove -n privacy-workshop
+conda env create -f setup/environment.yml
+conda activate privacy-workshop
+```
+
+---
+
+## Academic Integrity Notice
+
+This workshop is for **educational and research purposes only**.
+
+- Do not attempt re-identification on real or proprietary datasets
+- Do not reuse workshop code for unauthorized data analysis
+- Follow your institution’s ethical research guidelines
+
+---
+
+## Getting Help
+
+If you are stuck:
+
+1. Copy the **full error message**
+2. Note which step you were on
+3. Bring both to the session or office hours
+
+Vague descriptions like “it doesn’t work” will slow things down.
+
+---
+
+You are fully prepared.
