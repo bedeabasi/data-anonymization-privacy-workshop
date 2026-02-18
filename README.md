@@ -53,6 +53,6 @@ Techniques demonstrated here are intended to improve privacy and security, not t
 
 ## Getting Started
 Follow the setup instructions in:
-`setup/setup_instructions.md`
+`setup_instructions.md`
 
 Do not modify the datasets unless instructed.
