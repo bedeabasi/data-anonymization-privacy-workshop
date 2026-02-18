@@ -2,21 +2,37 @@
 
 Follow these steps carefully before the first session.
 
+If you have never used Git, Conda, or Jupyter before, do not worry. Just follow the steps exactly as written.
+
 ---
 
-## Step 1: Install Git
+# Step 1: Install Git
 
-Check if Git is installed:
+Git allows you to download the workshop code.
+
+### Check if Git is already installed
+
+Open a terminal:
+
+- **Windows:** Open *Anaconda Prompt* or *PowerShell*
+- **macOS:** Open *Terminal*
+- **Linux:** Open your terminal
+
+Type:
 
 ```bash
 git --version
 ```
 
-If Git is not installed, download and install it from:
+If you see a version number (for example, `git version 2.40.0`), Git is installed.
+
+If you see an error, download Git from:
 
 https://git-scm.com/downloads
 
-After installation, reopen your terminal and re-run:
+Install it using the default options.
+
+After installation, close and reopen your terminal and run:
 
 ```bash
 git --version
@@ -24,266 +40,257 @@ git --version
 
 ---
 
-## Step 2: Install Conda (Miniconda Recommended)
+# Step 2: Install Conda (Miniconda Recommended)
 
-This workshop uses Conda to manage the Python environment.
+Conda manages the Python environment so everyone uses the same setup.
 
-Download Miniconda for your operating system:
+Download Miniconda:
 
 https://docs.conda.io/en/latest/miniconda.html
 
-After installation, verify Conda is available:
+Install it using default settings.
+
+After installation:
+
+- **Windows:** Open *Anaconda Prompt*
+- **macOS/Linux:** Restart your terminal
+
+Verify installation:
 
 ```bash
 conda --version
 ```
 
+You should see something like:
+
+```
+conda 23.x.x
+```
+
+If not, restart your terminal and try again.
+
 ---
 
-## Step 3: Clone the Workshop Repository
+# Step 3: Download (Clone) the Workshop Repository
 
-In your terminal, navigate to a directory where you want to store the workshop files, then run:
+Choose a location where you want the workshop folder to live (for example, your Desktop).
+
+In your terminal, type:
+
+```bash
+cd Desktop
+```
+
+Then run:
 
 ```bash
 git clone https://github.com/bedeabasi/data-anonymization-privacy-workshop.git
 cd data-anonymization-privacy-workshop
 ```
 
-Move into the project directory:
-
-```bash
-cd data-anonymization-privacy-workshop
-```
+You have now downloaded the workshop code.
 
 ---
 
-## Step 4: Create the Conda Environment
+# Step 4: Confirm You Are in the Correct Folder
 
-Create the environment using the provided configuration file:
+Type:
+
+```bash
+pwd
+ls
+```
+
+You should see folders like:
+
+```
+src
+data
+notebooks
+setup
+```
+
+If you do not see these, you are not inside the correct folder.
+
+---
+
+# Step 5: Create the Workshop Environment
+
+Now create the Python environment:
 
 ```bash
 conda env create -f setup/environment.yml
 ```
 
-Activate the environment:
+This may take several minutes. That is normal.
+
+---
+
+# Step 6: Activate the Environment
+
+Activate it:
 
 ```bash
 conda activate privacy-workshop
 ```
 
-Confirm the environment is active:
+Your terminal should now look something like:
 
-```bash
-python --version
 ```
+(privacy-workshop) yourname@computer
+```
+
+That means the environment is active.
 
 ---
 
-## Step 5: Launch Jupyter Notebook
+# Step 7: Verify Python Is Correct
 
-Start Jupyter Notebook:
+Check that Python is coming from the workshop environment.
+
+On macOS/Linux:
+
+```bash
+which python
+```
+
+On Windows:
+
+```bash
+where python
+```
+
+The path should contain:
+
+```
+privacy-workshop
+```
+
+If it does not, the environment is not active.
+
+---
+
+# Step 8: Start Jupyter Notebook
+
+Launch Jupyter:
 
 ```bash
 jupyter notebook
 ```
 
-Your web browser should open automatically.  
-If not, copy and paste the URL shown in the terminal into your browser.
+Your web browser should open automatically.
 
-In the Jupyter interface, open the `notebooks/` folder.
-
----
-
-## Step 6: Verify Your Setup
-
-Open the notebook:
-
-```
-notebooks/session1_reidentification.ipynb
-```
-
-Run the first cell.
-
-If the cell runs without errors, your setup is complete.
+If it does not:
+- Copy the URL shown in the terminal
+- Paste it into your browser
 
 ---
 
-## Common Troubleshooting
+# Step 9: Open the Session 1 Notebook
 
-### Conda environment creation fails
+In the browser:
 
-Try updating Conda:
+1. Click the `notebooks` folder
+2. Click `session1_reidentification.ipynb`
 
-```bash
-conda update conda
+Run the cells **from top to bottom** by clicking each cell and pressing:
+
+```
+Shift + Enter
 ```
 
-Then re-run **Step 4**.
+If setup is correct, you should see:
 
-### Jupyter command not found
+- Private dataset shape: (1000, 5)
+- Auxiliary dataset shape: (600, 3)
+- Re-identification results printed successfully
 
-Try:
+---
+
+# Optional: If Datasets Are Missing
+
+If the folder `data/raw/` is empty, generate the datasets:
 
 ```bash
-python -m notebook
+python src/generate_datasets.py
 ```
 
-### Environment not activating
+Then reopen the notebook.
 
-Make sure you activated the correct environment:
+---
+
+# Common Beginner Issues
+
+## Conda not recognized
+
+You may be using the wrong terminal.
+
+- Windows → Use *Anaconda Prompt*
+- macOS/Linux → Restart terminal
+
+---
+
+## ModuleNotFoundError
+
+Make sure:
 
 ```bash
 conda activate privacy-workshop
 ```
 
----
-
-## Important Notes
-
-- Do **not** modify the datasets unless instructed.
-- All datasets used in this workshop are **synthetic**.
-- If you encounter issues you cannot resolve, bring the **full error message** to the first session.
-
----
-
-## Prerequisites Checklist (Before Day 1)
-
-Before attending the first session, make sure you can confirm **all** of the following:
-
-- [ ] Git is installed (`git --version` works)
-- [ ] Conda is installed (`conda --version` works)
-- [ ] The `privacy-workshop` environment activates successfully
-- [ ] Jupyter Notebook launches without errors
-- [ ] You can open and run `session1_reidentification.ipynb`
-
-If **any** item fails, resolve it **before** the first session.
-
----
-
-## Repository Structure
-
-After cloning the repository, your directory should look like this:
+Then restart the notebook kernel:
 
 ```
-data-anonymization-privacy-workshop/
-├── README.md
-├── setup/
-│   └── environment.yml
-├── notebooks/
-│   ├── session1_reidentification.ipynb
-│   ├── session2_k_anonymity.ipynb
-│   └── session3_differential_privacy.ipynb
-├── data/
-│   ├── raw/
-│   └── processed/
-├── src/
-│   ├── anonymization/
-│   └── attacks/
-└── results/
-```
-
-If your structure differs significantly, you may have cloned the repository incorrectly.
-
----
-
-## Environment Details
-
-This workshop uses a **dedicated Conda environment** to ensure consistency across systems.
-
-- Python version: **3.9**
-- Core libraries:
-  - NumPy
-  - Pandas
-  - Scikit-learn
-  - Matplotlib
-  - Jupyter
-  - Seaborn
-
-All dependencies are pinned in:
-
-```
-setup/environment.yml
-```
-
-Do **not** install additional packages unless explicitly instructed.
-
----
-
-## Workshop Flow Overview
-
-Each session follows the same structure:
-
-1. **Conceptual overview** (threat model, assumptions, risks)
-2. **Hands-on notebook walkthrough**
-3. **Attack or evaluation**
-4. **Discussion of failures and tradeoffs**
-
-Sessions build on each other — skipping earlier notebooks is **not recommended**.
-
----
-
-## Rules of Engagement
-
-To ensure everyone has a smooth experience:
-
-- Do **not** rename notebooks or folders
-- Do **not** hardcode absolute file paths
-- Run notebooks **top to bottom**
-- Ask questions when something breaks — debugging is part of the learning
-
----
-
-## Common Issues and Fixes
-
-### Kernel not found in Jupyter
-
-Select the correct kernel manually:
-
-```
-Kernel → Change Kernel → privacy-workshop
-```
-
-### Notebook runs slowly
-
-- Close unused applications
-- Restart the kernel:
-  ```
-  Kernel → Restart Kernel and Clear Output
-  ```
-
-### Package import errors
-
-Reinstall the environment:
-
-```bash
-conda deactivate
-conda env remove -n privacy-workshop
-conda env create -f setup/environment.yml
-conda activate privacy-workshop
+Kernel → Restart Kernel
 ```
 
 ---
 
-## Academic Integrity Notice
+## File Not Found Errors
 
-This workshop is for **educational and research purposes only**.
+Make sure you started Jupyter from inside:
 
-- Do not attempt re-identification on real or proprietary datasets
-- Do not reuse workshop code for unauthorized data analysis
-- Follow your institution’s ethical research guidelines
+```
+data-anonymization-privacy-workshop
+```
 
----
-
-## Getting Help
-
-If you are stuck:
-
-1. Copy the **full error message**
-2. Note which step you were on
-3. Bring both to the session or office hours
-
-Vague descriptions like “it doesn’t work” will slow things down.
+Not from your home directory.
 
 ---
 
-You are fully prepared.
+## Notebook seems frozen
+
+Restart the kernel:
+
+```
+Kernel → Restart Kernel and Clear Output
+```
+
+Then run cells again.
+
+---
+
+# Before the First Session Checklist
+
+Make sure you can confirm ALL of the following:
+
+- [ ] `git --version` works
+- [ ] `conda --version` works
+- [ ] `conda activate privacy-workshop` works
+- [ ] `jupyter notebook` opens in your browser
+- [ ] You can run all cells in `session1_reidentification.ipynb` without errors
+
+If any item fails, fix it before the session.
+
+---
+
+# Important Rules
+
+- Do not rename folders.
+- Do not change file paths.
+- Always run notebooks from top to bottom.
+- If something breaks, copy the FULL error message.
+
+---
+
+You are ready for the workshop.
