@@ -45,10 +45,9 @@ conda --version
 In your terminal, navigate to a directory where you want to store the workshop files, then run:
 
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/bedeabasi/data-anonymization-privacy-workshop.git
+cd data-anonymization-privacy-workshop
 ```
-
-Replace `<REPO_URL>` with the GitHub repository link provided to you.
 
 Move into the project directory:
 
