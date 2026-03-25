@@ -20,19 +20,49 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 def generate_private_dataset(n=1000):
-    """Generate synthetic private dataset."""
+    """Generate synthetic private dataset with structured correlations."""
+    
+    ages = np.random.randint(18, 70, size=n)
+    zipcodes = np.random.choice(
+        ["27284", "27401", "27514", "27606", "27707"], size=n
+    )
+    occupations = np.random.choice(
+        ["Engineer", "Teacher", "Nurse", "Student", "Analyst"], size=n
+    )
+
+    diseases = []
+
+    for age, occ in zip(ages, occupations):
+        probs = {
+            "Diabetes": 0.1,
+            "Hypertension": 0.1,
+            "Cancer": 0.05,
+            "None": 0.75
+        }
+
+        # Age effect
+        if age > 50:
+            probs["Hypertension"] += 0.25
+            probs["Diabetes"] += 0.15
+            probs["None"] -= 0.3
+
+        # Occupation effect
+        if occ == "Nurse":
+            probs["Cancer"] += 0.15
+            probs["None"] -= 0.1
+
+        # Normalize probabilities
+        total = sum(probs.values())
+        probs = {k: v / total for k, v in probs.items()}
+
+        diseases.append(np.random.choice(list(probs.keys()), p=list(probs.values())))
+
     df = pd.DataFrame({
         "record_id": range(n),
-        "age": np.random.randint(18, 70, size=n),
-        "zipcode": np.random.choice(
-            ["27284", "27401", "27514", "27606", "27707"], size=n
-        ),
-        "occupation": np.random.choice(
-            ["Engineer", "Teacher", "Nurse", "Student", "Analyst"], size=n
-        ),
-        "disease": np.random.choice(
-            ["Diabetes", "Hypertension", "Cancer", "None"], size=n
-        )
+        "age": ages,
+        "zipcode": zipcodes,
+        "occupation": occupations,
+        "disease": diseases
     })
 
     return df
